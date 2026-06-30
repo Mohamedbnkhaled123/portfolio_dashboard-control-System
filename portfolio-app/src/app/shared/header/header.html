@@ -1,0 +1,33 @@
+<header class="navbar-header" data-scroll-header="true">
+  <div class="container navbar-container">
+    <a routerLink="/home" class="logo" aria-label="Alex Carter Home">
+      <span class="logo-dot"></span>
+      <span class="logo-text">alex.carter</span>
+    </a>
+
+    <!-- Mobile Menu Button (Ready for JS) -->
+    <button class="mobile-menu-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="main-nav" data-menu-toggle>
+      <span class="bar bar-1"></span>
+      <span class="bar bar-2"></span>
+      <span class="bar bar-3"></span>
+    </button>
+
+    <!-- Main Navigation -->
+    <nav id="main-nav" class="navbar-nav" aria-label="Main Navigation">
+      <ul class="nav-list">
+        <li class="nav-item"><a routerLink="/home" routerLinkActive="active" class="nav-link">Home</a></li>
+        <li class="nav-item"><a routerLink="/about" routerLinkActive="active" class="nav-link">About</a></li>
+        <li class="nav-item"><a routerLink="/skills" routerLinkActive="active" class="nav-link">Skills</a></li>
+        <li class="nav-item"><a routerLink="/projects" routerLinkActive="active" class="nav-link">Projects</a></li>
+        <li class="nav-item"><a routerLink="/experience" routerLinkActive="active" class="nav-link">Experience</a></li>
+        <li class="nav-item"><a routerLink="/contact" routerLinkActive="active" class="nav-link">Contact</a></li>
+      </ul>
+    </nav>
+    
+    <!-- Quick Contact Button -->
+    <div class="navbar-cta-wrapper">
+      <a routerLink="/dashboard" class="btn btn-secondary btn-sm navbar-cta" style="margin-right: 8px;">Dashboard</a>
+      <a routerLink="/contact" class="btn btn-primary btn-sm navbar-cta">Let's Talk</a>
+    </div>
+  </div>
+</header>

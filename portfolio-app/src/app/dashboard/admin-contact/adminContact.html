@@ -1,0 +1,43 @@
+<!-- Contact Editor Panel -->
+<section class="panel panel-contact" id="panel-contact" style="display: block;">
+  <div class="panel-header">
+    <h2>Contact Editor</h2>
+    <p>Update your contact information such as email and location.</p>
+  </div>
+
+  @if(contactData) {
+  <div class="form-card">
+    <h3 class="card-title">Contact Information</h3>
+    <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+      <div class="form-grid">
+
+        <div class="form-group span-2">
+          <label for="contact-email">Email Address</label>
+          <input type="email" id="contact-email" formControlName="emailContact" class="form-control">
+          @if (myForm.get('emailContact')?.hasError('required') && myForm.get('emailContact')?.touched) {
+            <span class="error">Email is required</span>
+          }
+          @if (myForm.get('emailContact')?.hasError('invalidEmail') && myForm.get('emailContact')?.touched) {
+            <span class="error">Please enter a valid email address</span>
+          }
+        </div>
+
+        <div class="form-group span-2">
+          <label for="contact-location">Location</label>
+          <input type="text" id="contact-location" formControlName="locationContact" class="form-control">
+        </div>
+
+        <div class="form-group span-2">
+          <label for="contact-desc">Contact Description</label>
+          <textarea id="contact-desc" formControlName="contactDisc" class="form-control" rows="4"></textarea>
+        </div>
+
+      </div>
+
+      <div class="form-actions" style="margin-top: 20px;">
+        <button type="submit" class="btn btn-primary" [disabled]="myForm.invalid">Save Changes</button>
+      </div>
+    </form>
+  </div>
+  }
+</section>

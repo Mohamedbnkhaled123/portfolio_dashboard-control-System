@@ -1,0 +1,51 @@
+<!-- About Section -->
+@if(aboutData){
+<section id="about" class="section about-section" aria-labelledby="about-heading" data-animate-parent>
+  <div class="container">
+    <div class="section-header">
+      <span class="section-subtitle">{{ aboutData.aboutBadge }}</span>
+      <h2 id="about-heading" class="section-title">About Me</h2>
+      <div class="section-divider"></div>
+    </div>
+
+    <div class="about-grid">
+      <!-- Column 1: Image / Interactive Card -->
+      <div class="about-visual" data-animate="slide-in-left">
+        <div class="about-photo-wrapper">
+          <div class="about-photo-placeholder">
+            @if (aboutData.aboutImage) {
+              <img [src]="aboutData.aboutImage" alt="Profile Picture" class="about-image">
+            } @else {
+              <img src="/profile.png" alt="Default Profile" class="about-image">
+            }
+            <div class="photo-overlay-card">
+              <p class="overlay-title">Frontend Engineer</p>
+              <p class="overlay-sub">& UI/UX Enthusiast</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Column 2: Content -->
+      <div class="about-info" data-animate="slide-in-right">
+        <h3 class="about-subheading"> {{ aboutData.mainTitle }}</h3>
+        <p class="about-text">
+          {{ aboutData.aboutDsc }}    
+        </p>
+
+        <div class="about-tags-wrapper">
+          <h4 class="tags-title">Core Philosophies</h4>
+          <div class="tag-grid">
+            <span class="info-tag">Performance First</span>
+            <span class="info-tag">Responsive Design</span>
+            <span class="info-tag">Semantic HTML</span>
+            <span class="info-tag">Pixel Perfection</span>
+            <span class="info-tag">A11y Compliant</span>
+            <span class="info-tag">Clean Architecture</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+}

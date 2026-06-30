@@ -1,0 +1,66 @@
+<section class="panel panel-skills" id="panel-skills" style="display: block;">
+  <div class="panel-header">
+    <h2>Skills & Tools Editor</h2>
+    <p>Manage your technical skills and tools dynamically.</p>
+  </div>
+
+  @if(skillsData) {
+  <div class="form-card">
+    <form (ngSubmit)="onSubmit()">
+      
+      <!-- Section 1: Tools Section Title -->
+      <div class="form-group span-2" style="margin-bottom: 25px;">
+        <label for="skills-toolsTitle" style="font-weight: bold;">Tools Section Title</label>
+        <input type="text" id="skills-toolsTitle" name="toolsTitle" class="form-control" [(ngModel)]="skillsData.toolsTitle">
+      </div>
+
+      <hr style="border: 0; border-top: 1px solid #eee; margin: 25px 0;">
+
+      <!-- Section 2: Technical Skills List (Icons only, names editable) -->
+      <h3 style="margin-bottom: 15px; color: #333;">Technical Skills List</h3>
+      <div style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 15px;">
+        
+        @for (skill of skillsList; track $index) {
+        <div style="display: flex; gap: 15px; align-items: center;">
+          <input type="text" placeholder="Skill Name (e.g. HTML5)" name="skillName-{{$index}}" class="form-control" [(ngModel)]="skill.name" style="flex: 1;">
+          <button type="button" (click)="removeSkill($index)" class="btn btn-secondary" style="padding: 10px; background-color: #ff4d4d; color: white; border: none; border-radius: 5px; cursor: pointer;">
+            Delete
+          </button>
+        </div>
+        }
+
+        <button type="button" (click)="addSkill()" class="btn" style="align-self: flex-start; padding: 8px 15px; background-color: #28a745; color: white; border: none; border-radius: 5px; cursor: pointer;">
+          + Add New Skill
+        </button>
+      </div>
+
+      <hr style="border: 0; border-top: 1px solid #eee; margin: 25px 0;">
+
+      <!-- Section 3: Tools & Software Badges -->
+      <h3 style="margin-bottom: 15px; color: #333;">Tools & Software Badges</h3>
+      <div style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px;">
+        
+        @for (badge of badgesList; track $index) {
+        <div style="display: flex; gap: 15px; align-items: center;">
+          <input type="text" placeholder="Tool Name (e.g. GitHub)" name="badgeName-{{$index}}" class="form-control" [(ngModel)]="badge.name" style="flex: 1;">
+          <button type="button" (click)="removeBadge($index)" class="btn btn-secondary" style="padding: 10px; background-color: #ff4d4d; color: white; border: none; border-radius: 5px; cursor: pointer;">
+            Delete
+          </button>
+        </div>
+        }
+
+        <button type="button" (click)="addBadge()" class="btn" style="align-self: flex-start; padding: 8px 15px; background-color: #28a745; color: white; border: none; border-radius: 5px; cursor: pointer;">
+          + Add New Tool
+        </button>
+      </div>
+
+      <!-- Save Changes Button -->
+      <div class="form-actions" style="margin-top: 30px;">
+        <button type="submit" class="btn btn-primary" style="padding: 12px 30px; font-size: 16px;">
+          Save All Changes
+        </button>
+      </div>
+    </form>
+  </div>
+  }
+</section>

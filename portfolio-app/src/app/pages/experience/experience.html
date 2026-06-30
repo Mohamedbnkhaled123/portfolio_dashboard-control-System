@@ -1,0 +1,32 @@
+<!-- Experience Timeline Section -->
+@if(experienceDoc) {
+<section id="experience" class="section timeline-section" aria-labelledby="experience-heading" data-animate-parent>
+  <div class="container">
+    <div class="section-header">
+      <span class="section-subtitle">Career Path</span>
+      <h2 id="experience-heading" class="section-title">Work Experience</h2>
+      <div class="section-divider"></div>
+    </div>
+
+    <div class="timeline-container">
+      <div class="timeline-line"></div>
+
+      <!-- Loop over experienceDoc.experienceList dynamically -->
+      @for (exp of experienceDoc.experienceList; track exp._id; let i = $index) {
+      <div class="timeline-item" [attr.data-delay]="i * 100" data-animate="fade-in">
+        <div class="timeline-marker">
+          <span class="marker-dot"></span>
+        </div>
+        <div class="timeline-content-card">
+          <span class="timeline-date">{{ exp.jobHistory }}</span>
+          <h3 class="timeline-role">{{ exp.jobTitle }}</h3>
+          <p class="timeline-desc">
+            {{ exp.jobDesc }}
+          </p>
+        </div>
+      </div>
+      }
+    </div>
+  </div>
+</section>
+}

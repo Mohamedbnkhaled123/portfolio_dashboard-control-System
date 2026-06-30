@@ -1,0 +1,80 @@
+<!-- Projects Panel -->
+<section class="panel panel-projects" id="panel-projects" style="display: block;">
+  <div class="panel-header">
+    <h2>Recent Projects Editor</h2>
+    <p>Manage all your portfolio projects from one place.</p>
+  </div>
+
+  @if(projectsDoc) {
+  <!-- Dashboard Projects Toolbar -->
+  <div class="panel-toolbar" style="margin-bottom: 20px;">
+    <button type="button" class="btn btn-primary" (click)="addNewProject()" style="padding: 10px 20px; background-color: #28a745; color: white; border: none; border-radius: 5px; cursor: pointer; display: flex; align-items: center; gap: 8px;">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+      <span>Add New Project</span>
+    </button>
+  </div>
+
+  <!-- Project Cards list (forms) -->
+  <form (ngSubmit)="onSubmit()">
+    <div class="projects-editor-list" style="display: flex; flex-direction: column; gap: 20px; margin-bottom: 25px;">
+      
+      @for (project of projectsDoc.projectsList; track $index; let i = $index) {
+      <div class="project-item-card" style="border: 1px solid #ddd; padding: 20px; border-radius: 8px; background-color: #f9f9f9; position: relative;">
+        <div class="project-item-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; border-bottom: 1px solid #eee; padding-bottom: 10px;">
+          <span class="project-order-number" style="font-weight: bold; color: #333;">Project #{{ i + 1 }}</span>
+          <div class="project-header-actions">
+            <button type="button" (click)="deleteProject(i)" class="btn btn-secondary" style="padding: 6px 12px; background-color: #ff4d4d; color: white; border: none; border-radius: 5px; cursor: pointer;" aria-label="Delete Project">
+              Delete
+            </button>
+          </div>
+        </div>
+
+        <div class="form-grid" style="display: grid; grid-template-columns: 1fr; gap: 15px;">
+          <div class="form-group">
+            <label style="font-weight: bold; display: block; margin-bottom: 5px;">Project Title</label>
+            <input type="text" name="title-{{i}}" class="form-control" [(ngModel)]="project.title" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;" required #titleInput="ngModel">
+            @if (titleInput.invalid && titleInput.touched) {
+              <span class="error">This field is required</span>
+            }
+          </div>
+
+          <!-- Project Image Upload Field -->
+          <div class="form-group">
+            <label style="font-weight: bold; display: block; margin-bottom: 5px;">Project Image</label>
+            <div style="display: flex; gap: 15px; align-items: center;">
+              <input type="file" (change)="onImageUpload($event, i)" accept="image/*" class="form-control" style="flex: 1; padding: 6px;">
+              @if (project.imageUrl) {
+                <img [src]="project.imageUrl" alt="Project Preview" style="width: 60px; height: 60px; border-radius: 6px; object-fit: cover; border: 1px solid #ccc;">
+              }
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label style="font-weight: bold; display: block; margin-bottom: 5px;">Tag / Badge Name</label>
+            <input type="text" name="badge-{{i}}" class="form-control" [(ngModel)]="project.badge" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+          </div>
+
+          <div class="form-group">
+            <label style="font-weight: bold; display: block; margin-bottom: 5px;">Card Short Description</label>
+            <textarea name="desc-{{i}}" class="form-control" rows="3" [(ngModel)]="project.description" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;"></textarea>
+          </div>
+
+          <div class="form-group">
+            <label style="font-weight: bold; display: block; margin-bottom: 5px;">Technologies Tags (Comma Separated)</label>
+            <input type="text" name="tags-{{i}}" class="form-control" [(ngModel)]="project.tags" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+          </div>
+        </div>
+      </div>
+      }
+
+    </div>
+
+    <!-- Save Changes Button at the bottom for the entire list -->
+    <div class="form-actions" style="margin-top: 30px;">
+      <button type="submit" class="btn btn-primary" style="padding: 12px 30px; font-size: 16px;">
+        Save All Projects Changes
+      </button>
+    </div>
+  </form>
+  }
+</section>

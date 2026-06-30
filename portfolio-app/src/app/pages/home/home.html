@@ -1,0 +1,76 @@
+@if (homeData) {
+  <!-- Hero Section -->
+  <section id="hero" class="hero-section" aria-label="Hero Section">
+    <div class="hero-glow-1"></div>
+    <div class="hero-glow-2"></div>
+    <div class="container hero-container">
+      <div style="display: grid; grid-template-columns: 1fr; gap: 40px; align-items: center; width: 100%;" [style.grid-template-columns]="homeData.heroImage ? '1fr 1fr' : '1fr'">
+        
+        <div class="hero-content">
+          <div class="hero-badge" data-animate="fade-in">
+            <span class="badge-dot"></span> {{ homeData.headline }}
+          </div>
+          
+          <h1 class="hero-title" data-animate="fade-in" data-delay="100">
+            Hi, I'm <span class="highlight-gradient">{{ homeData.mainTitle }}</span>
+            <span class="hero-subtitle">
+            A <span class="typing-text" aria-label="Creative Developer">{{homeData.subTitle}}</span>
+            </span>
+          </h1>
+          
+          <p class="hero-description" data-animate="fade-in" data-delay="200">
+            {{ homeData.heroDesc }}
+          </p>
+          
+          <div class="hero-ctas" data-animate="fade-in" data-delay="300">
+            <a routerLink="/contact" class="btn btn-primary">
+              Contact Me
+              <svg class="btn-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <line x1="22" y1="2" x2="11" y2="13"></line>
+                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+              </svg>
+            </a>
+            <a [href]="homeData.resumePdf" class="btn btn-secondary" download="Resume.pdf" aria-label="Download CV as PDF">
+              Download CV
+              <svg class="btn-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="7 10 12 15 17 10"></polyline>
+                <line x1="12" y1="15" x2="12" y2="3"></line>
+              </svg>
+            </a>
+          </div>
+          
+          <!-- Hero Stats/Features Grid -->
+          <div class="hero-stats" data-animate="fade-in" data-delay="400">
+            <div class="stat-card">
+              <span class="stat-num">5+</span>
+              <span class="stat-label">Years Experience</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-num">40+</span>
+              <span class="stat-label">Projects Completed</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-num">99%</span>
+              <span class="stat-label">Client Satisfaction</span>
+            </div>
+          </div>
+        </div>
+
+        @if (homeData.heroImage) {
+          <div class="hero-visual" style="text-align: center; z-index: 2;" data-animate="fade-in" data-delay="300">
+            <img [src]="homeData.heroImage" alt="Hero Image" style="max-width: 100%; border-radius: 30px; box-shadow: 0 20px 50px rgba(124, 77, 255, 0.3); border: 2px solid rgba(255,255,255,0.1);">
+          </div>
+        }
+
+      </div>
+    </div>
+    
+    <!-- Scroll Indicator -->
+    <a routerLink="/about" class="scroll-indicator" aria-label="Scroll down to About section">
+      <span class="scroll-mouse">
+        <span class="scroll-wheel"></span>
+      </span>
+    </a>
+  </section>
+}

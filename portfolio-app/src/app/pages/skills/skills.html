@@ -1,0 +1,56 @@
+<!-- Skills Section -->
+@if(skillData) {
+<section id="skills" class="section skills-section" aria-labelledby="skills-heading" data-animate-parent>
+  <div class="container">
+    <div class="section-header">
+      <span class="section-subtitle">Expertise</span>
+      <h2 id="skills-heading" class="section-title">Skills & Stack</h2>
+      <div class="section-divider"></div>
+    </div>
+
+    <div class="skills-grid">
+      <!-- Technical skills rendered as a clean grid of badges -->
+      <div class="skills-column" data-animate="fade-in">
+        <h3 class="skills-cat-title">Technical Stack</h3>
+        
+        <div class="badge-grid">
+          @for (skill of getSkillsList(); track skill) {
+          <div class="skill-badge-card">
+            <div class="badge-icon">
+              <!-- Generic stack layers SVG icon (Using only paths, no polylines) -->
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                <path d="M2 17l10 5 10-5"></path>
+                <path d="M2 12l10 5 10-5"></path>
+              </svg>
+            </div>
+            <span class="badge-name">{{ skill }}</span>
+          </div>
+          }
+        </div>
+      </div>
+
+      <!-- Other Stack / Tooling categories with an interactive grid of badges -->
+      <div class="skills-column" data-animate="fade-in" data-delay="150">
+        <h3 class="skills-cat-title">{{ skillData.toolsTitle }}</h3>
+        
+        <div class="badge-grid">
+          @for (badge of getBadgesList(); track badge) {
+          <div class="skill-badge-card">
+            <div class="badge-icon">
+              <!-- Generic computer/monitor SVG icon (Using rect/lines, no polylines) -->
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                <line x1="8" y1="21" x2="16" y2="21"></line>
+                <line x1="12" y1="17" x2="12" y2="21"></line>
+              </svg>
+            </div>
+            <span class="badge-name">{{ badge }}</span>
+          </div>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+}

@@ -1,0 +1,104 @@
+<!-- Overview Panel -->
+<section class="panel panel-overview" id="panel-overview" style="display: block;">
+  <div class="panel-header">
+    <h2>Dashboard Overview</h2>
+    <p>Quick statistics and general website settings.</p>
+  </div>
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="stat-icon-wrapper purple-bg">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+      </div>
+      <div class="stat-info">
+        <span class="stat-label">Unique Page Views</span>
+        <span class="stat-value">12,450</span>
+        <span class="stat-trend trend-up">+14.2% this month</span>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon-wrapper cyan-bg">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+      </div>
+      <div class="stat-info">
+        <span class="stat-label">Projects Published</span>
+        <span class="stat-value">3 Completed</span>
+        <span class="stat-trend">1 draft in queue</span>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon-wrapper pink-bg">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+      </div>
+      <div class="stat-info">
+        <span class="stat-label">Messages Received</span>
+        <span class="stat-value">28 Unread</span>
+        <span class="stat-trend trend-up">5 new today</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Home Panel (Hero Text Editor) -->
+<section class="panel panel-home" id="panel-home" style="display: block;">
+  <div class="panel-header">
+    <h2>Home Settings (Hero Text Editor)</h2>
+    <p>Modify the primary texts of your homepage landing section.</p>
+  </div>
+
+  @if(homeData) {
+  <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+    <div class="form-card">
+      <h3 class="card-title font-heading-style">Website Landing Hero Texts</h3>
+      <div class="form-grid">
+
+        <div class="form-group">
+          <label for="home-headline">Headline (Status Badge text)</label>
+          <input type="text" id="home-headline" formControlName="headline" class="form-control">
+        </div>
+
+        <div class="form-group">
+          <label for="home-mainTitle">Main Title (Greeting Title)</label>
+          <input type="text" id="home-mainTitle" formControlName="mainTitle" class="form-control">
+          @if (myForm.get('mainTitle')?.invalid && myForm.get('mainTitle')?.touched) {
+            <span class="error">This field is required</span>
+          }
+        </div>
+
+        <div class="form-group">
+          <label for="home-subTitle">Sub Title (Job Title)</label>
+          <input type="text" id="home-subTitle" formControlName="subTitle" class="form-control">
+        </div>
+
+        <div class="form-group span-2">
+          <label for="home-heroDesc">Hero Description Paragraph</label>
+          <textarea id="home-heroDesc" formControlName="heroDesc" class="form-control" rows="3"></textarea>
+        </div>
+
+        <!-- Hero Image Upload Field -->
+        <div class="form-group span-2">
+          <label for="home-heroImage" style="font-weight: bold; display: block; margin-bottom: 5px;">Hero Image</label>
+          <div style="display: flex; gap: 15px; align-items: center;">
+            <input type="file" id="home-heroImage" (change)="onImageUpload($event)" accept="image/*" class="form-control" style="flex: 1;">
+            @if (homeData.heroImage) {
+              <img [src]="homeData.heroImage" alt="Hero Preview" style="width: 70px; height: 70px; border-radius: 8px; object-fit: cover; border: 1px solid #ccc;">
+            }
+          </div>
+        </div>
+
+        <div class="form-group span-2">
+          <label for="home-resumePdf">Resume PDF File Path (Resume PDF)
+            <input type="file" #resumeInput (change)="onResumeUpload($event)" accept="application/pdf" style="display: none;">
+            <button type="button" class="btn btn-secondary" (click)="resumeInput.click()">Upload Resume</button>
+          </label>
+          <input type="text" id="home-resumePdf" class="form-control" [value]="homeData.resumePdf" readonly>
+        </div>
+
+        <!-- Save button -->
+        <div class="form-group span-2" style="text-align: right; margin-top: 15px;">
+          <button type="submit" class="btn btn-primary" [disabled]="myForm.invalid" style="padding: 10px 25px; border-radius: 8px; cursor: pointer;">Save Changes</button>
+        </div>
+      </div>
+    </div>
+  </form>
+  }
+</section>

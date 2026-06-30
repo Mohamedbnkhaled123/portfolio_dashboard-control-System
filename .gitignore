@@ -1,0 +1,29 @@
+# Node
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Angular
+.angular/
+dist/
+
+# IDE / Gemini / Agent files
+.gemini/
+.tempmediaStorage/
+.system_generated/
+tasks/
+browser/
+scratch/
+implementation_plan.md
+walkthrough.md
+task.md
+
+# External / Backend API (explicitly excluded as requested)
+backend/
+Portfolio_API/
+
+# OS/IDEs
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
